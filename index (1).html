@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Online - GTA San Andreas Multiplayer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Стили для хиро-секции */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .main-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .tagline {
+            font-size: 18px;
+            color: #b0b0b0;
+            font-style: italic;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #0a0a0a;
+            border: none;
+            padding: 16px 45px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Стили для секции с описанием игры */
+        .game-description {
+            padding: 50px 40px;
+            background-color: #111111;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid #333;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .description-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #d0d0d0;
+            text-align: justify;
+        }
+        
+        .description-text p {
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffffff;
+        }
+        
+        .feature-title {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-title:before {
+            content: "✓";
+            color: #4CAF50;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        /* Стили для секции с картой */
+        .map-section {
+            padding: 40px 20px;
+            background-color: #111111;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid #333;
+        }
+        
+        .map-container {
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .caption {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 30px 0;
+            padding: 15px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            font-style: italic;
+            text-align: center;
+            border-left: 4px solid #ffffff;
+        }
+        
+        /* Стили для секции скачивания */
+        .download-section {
+            padding: 50px 40px;
+            background-color: #111111;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        
+        .download-btn {
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            padding: 20px 60px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .download-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .notice {
+            font-size: 16px;
+            color: #888;
+            margin-top: 20px;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+        }
+        
+        .back-to-top {
+            color: #888;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            color: #ffffff;
+        }
+        
+        /* Анимация для плавного скролла */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Анимация появления */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        /* Стили для мобильных устройств */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 36px;
+                letter-spacing: 2px;
+            }
+            
+            .cta-button, .download-btn {
+                padding: 14px 35px;
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 26px;
+            }
+            
+            .caption {
+                font-size: 22px;
+                padding: 12px;
+            }
+            
+            .hero {
+                padding: 40px 20px;
+            }
+            
+            .game-description, .download-section {
+                padding: 30px 20px;
+            }
+            
+            .description-text {
+                font-size: 16px;
+            }
+            
+            .download-btn {
+                padding: 18px 40px;
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 28px;
+            }
+            
+            .tagline {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .caption {
+                font-size: 20px;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Главная секция -->
+        <section class="hero" id="top">
+            <h1 class="main-title">BLACK ONLINE</h1>
+            <p class="tagline">то что тебе нравится</p>
+            <a href="#description" class="cta-button fade-in">посмотреть плюсы</a>
+        </section>
+        
+        <!-- Секция с описанием игры -->
+        <section class="game-description fade-in" id="description">
+            <h2 class="section-title">Что есть в GTA San Andreas Multiplayer</h2>
+            
+            <div class="description-text">
+                <p>GTA San Andreas Multiplayer (SA-MP) - это многопользовательская модификация для культовой игры Grand Theft Auto: San Andreas, которая превращает одиночную игру в масштабный онлайн-мир с тысячами игроков одновременно. В <span class="highlight">Black Online</span> сервере реализованы уникальные возможности, которые выделяют его среди других проектов.</p>
+                
+                <p>Игровой мир включает в себя <span class="highlight">полную карту Сан-Андреаса</span> с тремя мегаполисами: Лос-Сантос, Сан-Фиерро и Лас-Вентурас, а также сельские территории, горные массивы и пустынные зоны. На сервере доступны <span class="highlight">более 200 транспортных средств</span> - от простых велосипедов до военных истребителей, каждый с уникальными характеристиками и возможностями тюнинга.</p>
+                
+                <p>Экономическая система <span class="highlight">Black Online</span> позволяет игрокам зарабатывать деньги легальными и нелегальными способами: работа таксистом, грузчиком в порту, торговля на черном рынке, ограбления банков и магазинов. Развитая система бизнесов включает владение недвижимостью, заправками, клубами и другими предприятиями, приносящими постоянный доход.</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-title">Ролевая система</div>
+                        <p>Полноценная ролевая игра с системой фракций: полиция, медики, мафия, банды, правительство. Каждая фракция имеет уникальные возможности и обязанности.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-title">Кастомизация</div>
+                        <p>Глубокий кастомизатор персонажа с сотнями вариантов одежды, татуировок, причесок. Система прокачки навыков: сила, выносливость, вождение, стрельба.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-title">Уникальные ивенты</div>
+                        <p>Ежедневные ивенты: королевские битвы, гонки на выживание, захват территорий, охота за сокровищами, zombie-режим и другие специальные мероприятия.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-title">Технические возможности</div>
+                        <p>Оптимизированный мод с поддержкой HD-текстур, современных графических эффектов, реалистичной физикой и улучшенной системой анимаций.</p>
+                    </div>
+                </div>
+                
+                <p>Социальные взаимодействия в <span class="highlight">Black Online</span> выведены на новый уровень: система друзей и врагов, возможность создания семей и кланов, браки между игроками, сложная система отношений с репутацией. Игровой чат поддерживает голосовое общение в радиусе действия, приватные сообщения и фракционные каналы связи.</p>
+                
+                <p>Система достижений и наград мотивирует игроков к исследованию всего игрового мира. <span class="highlight">Более 500 уникальных достижений</span> за выполнение различных задач, скрытые локации и секреты, еженедельные обновления контента - все это делает игру постоянно интересной и увлекательной для новых и опытных игроков.</p>
+            </div>
+        </section>
+        
+        <!-- Секция с картой -->
+        <section class="map-section fade-in" id="map">
+            <h2 class="section-title">Карта мира Black Online</h2>
+            
+            <div class="map-container">
+                <img src="https://i.postimg.cc/CMDXYrB0/IMG-20240916-112931-570.jpg" alt="Карта Black Online" class="map-image" id="mapImage">
+            </div>
+            
+            <div class="caption">это все есть</div>
+        </section>
+        
+        <!-- Секция скачивания -->
+        <section class="download-section fade-in">
+            <h2 class="section-title">Начать играть</h2>
+            <button class="download-btn" id="downloadBtn">СКАЧАТЬ ИГРУ</button>
+            <p class="notice">Установочный файл включает клиент SA-MP, патчи для multiplayer и все необходимые компоненты для запуска игры на серверах Black Online</p>
+        </section>
+        
+        <footer>
+            <p>© <span class="highlight">BLACK ONLINE</span> | Все возможности GTA San Andreas Multiplayer в одном месте</p>
+            <a href="#top" class="back-to-top">↑ Вернуться наверх</a>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtn = document.getElementById('downloadBtn');
+            const mapImage = document.getElementById('mapImage');
+            
+            // Обработчик для кнопки скачивания игры
+            downloadBtn.addEventListener('click', function() {
+                // Временное сообщение, так как ссылки пока нет
+                const originalText = downloadBtn.textContent;
+                const originalColor = downloadBtn.style.backgroundColor;
+                
+                downloadBtn.textContent = 'СКАЧАТЬ (СКОРО)';
+                downloadBtn.style.backgroundColor = '#666';
+                downloadBtn.style.cursor = 'not-allowed';
+                
+                // Показываем сообщение с деталями
+                alert('Ссылка для скачивания игры появится в ближайшее время.\n\nВ установочный пакет войдет:\n• Клиент GTA San Andreas\n• Мод SA-MP 0.3.7-R2\n• Все необходимые патчи\n• Руководство по установке');
+                
+                // Возвращаем исходный вид кнопки через 3 секунды
+                setTimeout(() => {
+                    downloadBtn.textContent = originalText;
+                    downloadBtn.style.backgroundColor = '';
+                    downloadBtn.style.cursor = 'pointer';
+                }, 3000);
+            });
+            
+            // Проверка загрузки изображения
+            mapImage.onload = function() {
+                console.log('Карта успешно загружена');
+            };
+            
+            mapImage.onerror = function() {
+                console.error('Ошибка загрузки карты');
+                mapImage.alt = 'Изображение карты временно недоступно';
+                mapImage.style.border = '2px dashed #666';
+                mapImage.style.padding = '20px';
+                mapImage.style.backgroundColor = '#1a1a1a';
+            };
+            
+            // Анимация появления элементов при скролле
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Наблюдаем за всеми секциями для анимации
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Плавный скролл для всех якорных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
